@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 let stations = require('./routes/stations');
 let getNearest = require('./routes/getNearest');
+let upload = require('.routes/upload');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/stations', stations);
 app.use('/getNearest', getNearest);
+app.use('/upload', upload);
 
 
 // catch 404 and forward to error handler
