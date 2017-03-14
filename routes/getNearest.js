@@ -2,7 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var router = express.Router();
-var url = 'mongodb://localhost:27017/myproject';
+var url = 'mongodb://ds129720.mlab.com:29720/heroku_n1kxz9pj';
 var geolib = require('geolib');
 mongoose.connect(url);
 
