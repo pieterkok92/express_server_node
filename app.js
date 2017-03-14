@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 let stations = require('./routes/stations');
 let getNearest = require('./routes/getNearest');
-let upload = require('.routes/upload');
+let upload = require('./routes/upload');
 
 var app = express();
 
@@ -17,22 +17,22 @@ var app = express();
 // Storing KML file 
 ////////////////////////////////////////////////////////////////////////////////////
 
-var toGeoJSON = require('togeojson'),
-    fs = require('fs');
-    // node doesn't have xml parsing or a dom. use xmldom
-   DOMParser = require('xmldom').DOMParser;
+//var toGeoJSON = require('togeojson'),
+//    fs = require('fs');
+//    // node doesn't have xml parsing or a dom. use xmldom
+//   DOMParser = require('xmldom').DOMParser;
 
-var kml = new DOMParser().parseFromString(fs.readFileSync('substations.kml', 'utf8'));
+//var kml = new DOMParser().parseFromString(fs.readFileSync('substations.kml', 'utf8'));
 
-var converted = toGeoJSON.kml(kml);
+//var converted = toGeoJSON.kml(kml);
 
-var convertedWithStyles = toGeoJSON.kml(kml, { styles: true });
+//var convertedWithStyles = toGeoJSON.kml(kml, { styles: true });
 
-converted["features"].forEach((station) => {
-    var coordinate = station["geometry"].coordinates;
-    var name = station["properties"].Name;
-    console.log(`${coordinate} ${name}`);
-});
+//converted["features"].forEach((station) => {
+//    var coordinate = station["geometry"].coordinates;
+//    var name = station["properties"].Name;
+//    console.log(`${coordinate} ${name}`);
+//});
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
