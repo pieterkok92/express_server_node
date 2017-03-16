@@ -5,8 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
-var index = require('./index');
-//let stations = require('./routes/stations');
+//var index = require('./index');
+let stations = require('./routes/stations');
 let getNearest = require('./routes/getNearest');
 //let upload = require('./routes/upload');
 
@@ -48,8 +48,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-//app.use('/stations', stations);
+//app.use('/', index);
+app.use('/stations', stations);
 app.use('/getNearest', getNearest);
 //app.use('/upload', upload);
 
