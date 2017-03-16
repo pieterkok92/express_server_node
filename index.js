@@ -48,10 +48,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/stations', stations);
-app.use('/getNearest', getNearest);
-app.use('/upload', upload);
+//app.use('/', index);
+//app.use('/stations', stations);
+//app.use('/getNearest', getNearest);
+//app.use('/upload', upload);
 
 
 // catch 404 and forward to error handler
