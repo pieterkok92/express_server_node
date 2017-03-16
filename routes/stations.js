@@ -3,7 +3,7 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 
 // Connection URL
-var url = 'mongodb://localhost:27017/myproject';
+var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
 
 
 var findDocuments = (db, callback) => {
