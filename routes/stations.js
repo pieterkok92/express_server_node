@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
     var app = http.createServer(function(req,res){
     res.setHeader('Content-Type', './substations.geojson');
     res.send(JSON.stringify({}, null, 3));
+    response.write(JSON.stringify('./substations.geojson'));
 });
       
   
