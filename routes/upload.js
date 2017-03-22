@@ -14,3 +14,4 @@ converted["features"].forEach((station) => {
     var name = station["properties"].Name;
     console.log(`${coordinate} ${name}`);
 });
+module.exports = router;

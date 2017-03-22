@@ -5,3 +5,4 @@ var app = http.createServer(function(req,res){
     res.send(JSON.stringify({}, null, 3));
 });
 app.listen(3000);
+module.exports = router;
