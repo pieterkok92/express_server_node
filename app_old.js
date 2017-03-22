@@ -4,11 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var index = require('./routes/index');
-let stations = require('./routes/stations');
-
 var app = express();
+
+
+//var index = require('./index');
+let stations = require('./routes/send');
+//let getNearest = require('./routes/getNearest');
+//let upload = require('./routes/upload');
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -17,9 +21,9 @@ var app = express();
 ////////////////////////////////////////////////////////////////////////////////////
 
 //var toGeoJSON = require('togeojson'),
-    //fs = require('fs');
-    // node doesn't have xml parsing or a dom. use xmldom
-   // DOMParser = require('xmldom').DOMParser;
+//    fs = require('fs');
+//    // node doesn't have xml parsing or a dom. use xmldom
+//   DOMParser = require('xmldom').DOMParser;
 
 //var kml = new DOMParser().parseFromString(fs.readFileSync('substations.kml', 'utf8'));
 
@@ -28,16 +32,16 @@ var app = express();
 //var convertedWithStyles = toGeoJSON.kml(kml, { styles: true });
 
 //converted["features"].forEach((station) => {
-   // var coordinate = station["geometry"].coordinates;
-    //var name = station["properties"].Name;
-   // console.log(`${coordinate} ${name}`);
+//    var coordinate = station["geometry"].coordinates;
+//    var name = station["properties"].Name;
+//    console.log(`${coordinate} ${name}`);
 //});
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -47,8 +51,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/stations', stations);
+//app.use('/', index);
+app.use('/send', stations);
+//app.use('/getNearest', getNearest);
+//app.use('/upload', upload);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
