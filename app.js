@@ -50,12 +50,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/stations', stations);
 
+app.get('/download', function(req, res){
+  var file = __dirname + '/upload-folder/substations.geojson';
+  res.download(file); // Set disposition and send it.
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
