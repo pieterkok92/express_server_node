@@ -5,10 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
+
+
 //var index = require('./index');
 let stations = require('./routes/send');
-let getNearest = require('./routes/getNearest');
+//let getNearest = require('./routes/getNearest');
 //let upload = require('./routes/upload');
+
 
 
 
@@ -50,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 app.use('/send', stations);
-app.use('/getNearest', getNearest);
+//app.use('/getNearest', getNearest);
 //app.use('/upload', upload);
 
 
