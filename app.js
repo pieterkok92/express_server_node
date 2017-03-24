@@ -48,20 +48,24 @@ app.get('/upload', function(req, res){
   let substationsArray = substations['features'];
   mongoose.connect(url);
   var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'connection error:'));
-
-  //substationsArray.forEach((station)=>{ console.log(station.geometry);  });
- MongoClient.connect(url, function(err, db) {
+  db.on('error', console.error.bind(console, 'connection error:'));  
+  MongoClient.connect(url, function(err, db) {
         if(err){
             return res.json( {success: false, message: err });
         }
 
-  
-    var arrayLength = substationsArray.length;
+    //var arrayLength = substationsArray.length;
     //for (var i = 0; i < arrayLength; i++) {
-      db.collection('stations').insert(substationsArray);
+      //db.collection('stations').insert(substationsArray[i]);
       //Do something
     //}
+    substationsArray.forEach((station)=>{ 
+      db.collection('stations').insert(station._id)
+      db.collection('stations').insert(station.name)
+      db.collection('stations').insert(station.geometry)
+  
+
+  });
   });
 });
 
