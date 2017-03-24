@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 let stations = require('./routes/stations');
-
+let upload = require('./routes/upload');
 var app = express();
 
 
@@ -49,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/stations', stations);
+app.use('/upload', upload)
 
 app.get('/download', function(req, res){
   var file = __dirname + '/upload-folder/substations.geojson';

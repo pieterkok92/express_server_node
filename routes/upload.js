@@ -1,17 +1,5 @@
-var toGeoJSON = require('togeojson'),
-    fs = require('fs');
-// node doesn't have xml parsing or a dom. use xmldom
-DOMParser = require('xmldom').DOMParser;
+let substations = require('./substations.geojson');
 
-var kml = new DOMParser().parseFromString(fs.readFileSync('substations.kml', 'utf8'));
+let substationsArray = substations['features'];
 
-var converted = toGeoJSON.kml(kml);
-
-var convertedWithStyles = toGeoJSON.kml(kml, { styles: true });
-
-converted["features"].forEach((station) => {
-    var coordinate = station["geometry"].coordinates;
-    var name = station["properties"].Name;
-    console.log(`${coordinate} ${name}`);
-});
-module.exports = router;
+substationsArray.forEach((station)=>{ console.log(station.geometry);  });
