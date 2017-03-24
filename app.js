@@ -4,36 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var index = require('./routes/index');
 let stations = require('./routes/stations');
-let upload = require('./routes/upload');
 var app = express();
 
-
-/////////////////////////////////////////////////////////////////////////////////////
-// using togeojson in nodejs
-// Storing KML file 
-////////////////////////////////////////////////////////////////////////////////////
-
-//var toGeoJSON = require('togeojson'),
-    //fs = require('fs');
-    // node doesn't have xml parsing or a dom. use xmldom
-   // DOMParser = require('xmldom').DOMParser;
-
-//var kml = new DOMParser().parseFromString(fs.readFileSync('substations.kml', 'utf8'));
-
-//var converted = toGeoJSON.kml(kml);
-
-//var convertedWithStyles = toGeoJSON.kml(kml, { styles: true });
-
-//converted["features"].forEach((station) => {
-   // var coordinate = station["geometry"].coordinates;
-    //var name = station["properties"].Name;
-   // console.log(`${coordinate} ${name}`);
-//});
-
-///////////////////////////////////////////////////////////////////////////////////////
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,12 +23,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/stations', stations);
-app.use('/upload', upload)
+//app.use('/upload', upload)
 
 app.get('/download', function(req, res){
   var file = __dirname + '/upload-folder/substations.geojson';
   res.download(file); // Set disposition and send it.
 });
+app.get('/upload', function(req, res){
+  let substations = require('./substations.json');
+
+  let substationsArray = substations['features'];
+
+  substationsArray.forEach((station)=>{ console.log(station.geometry);  });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
