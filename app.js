@@ -8,6 +8,7 @@ var index = require('./routes/index');
 
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
 
 // Connection URL
 var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
@@ -44,15 +45,22 @@ app.get('/upload', function(req, res){
   let substations = require('./substations.json');
 
   let substationsArray = substations['features'];
+  mongoose.connect(url);
+  var db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error:'));
 
   //substationsArray.forEach((station)=>{ console.log(station.geometry);  });
-  MongoClient.connect(url, function(err, db) {
+ MongoClient.connect(url, function(err, db) {
+        if(err){
+            return res.json( {success: false, message: err });
+        }
 
+  
     var arrayLength = substationsArray.length;
-    for (var i = 0; i < arrayLength; i++) {
-      db.stations.insert(substationsArray[i]);
+    //for (var i = 0; i < arrayLength; i++) {
+      db.collection('stations').insert(substationsArray);
       //Do something
-    }
+    //}
   });
 });
 
