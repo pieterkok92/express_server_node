@@ -1,4 +1,4 @@
-let substations = require('./substations.geojson');
+let substations = require('./substations.json');
 
 let substationsArray = substations['features'];
 
