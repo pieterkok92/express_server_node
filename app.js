@@ -5,8 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
+
+var router = express.Router();
+var MongoClient = require('mongodb').MongoClient;
+
+// Connection URL
+var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
+
+
 let stations = require('./routes/stations');
 var app = express();
+
+
 
 
 // view engine setup
@@ -29,12 +39,17 @@ app.get('/download', function(req, res){
   var file = __dirname + '/upload-folder/substations.geojson';
   res.download(file); // Set disposition and send it.
 });
+
 app.get('/upload', function(req, res){
   let substations = require('./substations.json');
 
   let substationsArray = substations['features'];
 
-  substationsArray.forEach((station)=>{ console.log(station.geometry);  });
+  //substationsArray.forEach((station)=>{ console.log(station.geometry);  });
+  MongoClient.connect(url, function(err, db) {
+
+    db.stations.insertMany(substationsArray);
+  });
 });
 
 
