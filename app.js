@@ -48,7 +48,11 @@ app.get('/upload', function(req, res){
   //substationsArray.forEach((station)=>{ console.log(station.geometry);  });
   MongoClient.connect(url, function(err, db) {
 
-    db.stations.insertMany(substationsArray);
+    var arrayLength = substationsArray.length;
+    for (var i = 0; i < arrayLength; i++) {
+      db.stations.insert(substationsArray[i]);
+      //Do something
+    }
   });
 });
 
