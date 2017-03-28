@@ -58,7 +58,7 @@ app.get('/upload', function(req, res){
         console.log(station.geometry);
 
         //var object = {"id": station._id, "name": station.properties.name, "Geometry": station.geometry}
-        //db.collection('stations').insert(object)}
+        db.collection('stations').insert(object);
       
       });
   });
