@@ -54,11 +54,12 @@ app.get('/upload', function(req, res){
             return res.json( {success: false, message: err });
         }    
       substationsArray.forEach((station)=>{
+        console.log(station.id);
         console.log(station.properties.Name);
         console.log(station.geometry);
 
         //var object = {"id": station._id, "name": station.properties.name, "Geometry": station.geometry}
-        db.collection('stations').insert(object);
+        //db.collection('stations').insert(object)}
       
       });
   });
