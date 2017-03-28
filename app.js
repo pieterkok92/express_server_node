@@ -8,7 +8,7 @@ var index = require('./routes/index');
 
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 
 // Connection URL
 var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
@@ -18,7 +18,9 @@ let stations = require('./routes/stations');
 let getNearest = require('./routes/getNearest');
 var app = express();
 
+let substations = require('./substations.json');
 
+let substationsArray = substations['features'];
 
 
 // view engine setup
@@ -43,9 +45,7 @@ app.get('/download', function(req, res){
 });
 
 app.get('/upload', function(req, res){
-  let substations = require('./substations.json');
-
-  let substationsArray = substations['features'];
+  
   //mongoose.connect(url);
   //var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));  
