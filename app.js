@@ -46,7 +46,7 @@ app.get('/upload', function(req, res){
 
   let substationsArray = substations['features'];
   //mongoose.connect(url);
-  //var db = mongoose.connection;
+  var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));  
   MongoClient.connect(url, function(err, db) {
         if(err){
