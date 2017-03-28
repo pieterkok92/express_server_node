@@ -8,19 +8,16 @@ var index = require('./routes/index');
 
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
-//var mongoose = require('mongoose');
-
+var mongoose = require('mongoose');
+var app = express();
 // Connection URL
 var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
 
-
 let stations = require('./routes/stations');
 let getNearest = require('./routes/getNearest');
-var app = express();
 
-let substations = require('./substations.json');
 
-let substationsArray = substations['features'];
+
 
 
 // view engine setup
@@ -45,21 +42,20 @@ app.get('/download', function(req, res){
 });
 
 app.get('/upload', function(req, res){
-  
+  let substations = require('./substations.json');
+
+  let substationsArray = substations['features'];
   //mongoose.connect(url);
   //var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));  
   MongoClient.connect(url, function(err, db) {
         if(err){
             return res.json( {success: false, message: err });
-        }
-
-    //var arrayLength = substationsArray.length;
-    //for (var i = 0; i < arrayLength; i++) {
-      //db.collection('stations').insert(substationsArray[i]);
-      //Do something
-    //}
-    substationsArray.forEach((station)=>{db.collection('stations').insert(station.name)});
+        }    
+      substationsArray.forEach((station)=>{
+      db.collection('stations').insert(station.name)}
+      );
+});
 });
 
 
@@ -82,5 +78,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
