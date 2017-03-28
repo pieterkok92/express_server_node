@@ -45,6 +45,7 @@ app.get('/upload', function(req, res){
   let substations = require('./substations.json');
 
   let substationsArray = substations['features'];
+
   //mongoose.connect(url);
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));  
@@ -53,9 +54,15 @@ app.get('/upload', function(req, res){
             return res.json( {success: false, message: err });
         }    
       substationsArray.forEach((station)=>{
-      db.collection('stations').insert(station["properties"].Name)}
-      );
-});
+        console.log(station._id);
+        console.log(station.properties.name);
+        console.log(station.geometry);
+
+        //var object = {"id": station._id, "name": station.properties.name, "Geometry": station.geometry}
+        //db.collection('stations').insert(object)}
+      
+      });
+  });
 });
 
 
