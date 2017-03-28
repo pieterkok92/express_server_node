@@ -54,8 +54,7 @@ app.get('/upload', function(req, res){
             return res.json( {success: false, message: err });
         }    
       substationsArray.forEach((station)=>{
-        console.log(station._id);
-        console.log(station.properties.name);
+        console.log(station.properties.Name);
         console.log(station.geometry);
 
         //var object = {"id": station._id, "name": station.properties.name, "Geometry": station.geometry}
