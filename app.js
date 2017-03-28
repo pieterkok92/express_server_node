@@ -53,7 +53,7 @@ app.get('/upload', function(req, res){
             return res.json( {success: false, message: err });
         }    
       substationsArray.forEach((station)=>{
-      db.collection('stations').insert(station.properties["name"])}
+      db.collection('stations').insertOne(station.properties["name"])}
       );
 });
 });
