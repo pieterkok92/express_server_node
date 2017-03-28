@@ -60,7 +60,7 @@ app.get('/upload', function(req, res){
       //Do something
     //}
     substationsArray.forEach((station)=>{
-      [db.collection('stations').insert(station._id)],
+      [db.collection('stations').insert(station.id)],
       [db.collection('stations').insert(station.name)],
       [db.collection('stations').insert(station.geometry)]
   
