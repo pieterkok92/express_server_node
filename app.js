@@ -59,14 +59,7 @@ app.get('/upload', function(req, res){
       //db.collection('stations').insert(substationsArray[i]);
       //Do something
     //}
-    substationsArray.forEach((station)=>{
-      [db.collection('stations').insert(station.id)],
-      [db.collection('stations').insert(station.name)],
-      [db.collection('stations').insert(station.geometry)]
-  
-
-  });
-  });
+    substationsArray.forEach((station)=>{db.collection('stations').insert(station.name)});
 });
 
 
