@@ -54,7 +54,7 @@ app.get('/upload', function(req, res){
             return res.json( {success: false, message: err });
         }    
       substationsArray.forEach((station)=>{      
-        var object = {"_id":station.id,"Name":station.properties.Name,"Geometry":station.geometry};
+        var object = {"_id":station.id,"Name":station.properties.Name,"Geometry":station.geometry.coordinates};
         db.collection('stations').insert(object);
       
       });
