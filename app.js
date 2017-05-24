@@ -75,7 +75,7 @@ app.get('/upload2', function(req, res){
             return res.json( {success: false, message: err });
         }    
       powerlinesArray.forEach((powerline)=>{      
-        var object = {"Geometry":powerline.json_geometry.coordinates};
+        var object = {"Geometry":powerline.coordinates};
         db.collection('powerlines').insert(object);
       
       });
