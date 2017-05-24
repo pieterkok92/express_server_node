@@ -64,7 +64,7 @@ app.get('/upload', function(req, res){
 app.get('/upload2', function(req, res){
   let powerlines = require('./powerlines.json');
 
-  let powerlinesArray = powerlines[];
+  let powerlinesArray = powerlines[''];
 
   //mongoose.connect(url);
   var db = mongoose.connection;
