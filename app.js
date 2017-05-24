@@ -61,6 +61,26 @@ app.get('/upload', function(req, res){
   });
 });
 
+app.get('/upload2', function(req, res){
+  let powerlines = require('./powerlines.json');
+
+  let powerlinesArray = powerlines['Folder'];
+
+  //mongoose.connect(url);
+  var db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error:'));  
+  MongoClient.connect(url, function(err, db) {
+        if(err){
+            return res.json( {success: false, message: err });
+        }    
+      powerlinesArray.forEach((powerline)=>{      
+        var object = {"Name":powerline.Placemark.name,"Geometry":powerline.LineString.coordinates};
+        db.collection('powerlines').insert(object);
+      
+      });
+  });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
