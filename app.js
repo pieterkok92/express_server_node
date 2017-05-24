@@ -62,9 +62,9 @@ app.get('/upload', function(req, res){
 });
 
 app.get('/upload2', function(req, res){
-  let powerlines = require('./powerlines_1.json');
+  let powerlines = require('./powerlines.json');
 
-  let powerlinesArray = powerlines['Folder'];
+  let powerlinesArray = powerlines[];
 
   //mongoose.connect(url);
   var db = mongoose.connection;
@@ -74,7 +74,7 @@ app.get('/upload2', function(req, res){
             return res.json( {success: false, message: err });
         }    
       powerlinesArray.forEach((powerline)=>{      
-        var object = {"Name":powerline.Placemark.name,"Geometry":powerline.LineString.coordinates};
+        var object = {"Geometry":powerline.json_geometry.coordinates};
         db.collection('powerlines').insert(object);
       
       });
