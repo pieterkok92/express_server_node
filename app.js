@@ -64,7 +64,11 @@ app.get('/upload', function(req, res){
 app.get('/upload2', function(req, res){
   let powerlines = require('./powerlines.json');
 
+<<<<<<< HEAD
   let powerlinesArray = powerlines['features'];
+=======
+  let powerlinesArray = powerlines[''];
+>>>>>>> 02535a24ca4cc0c1db13b9e4eb1b4ff791dfa8d3
 
   //mongoose.connect(url);
   var db = mongoose.connection;
