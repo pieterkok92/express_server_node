@@ -62,7 +62,7 @@ app.get('/upload', function(req, res){
 });
 
 app.get('/upload2', function(req, res){
-  let powerlines = require('./powerlines.json');
+  let powerlines = require('./powerlines_1.json');
 
   let powerlinesArray = powerlines['Folder'];
 
