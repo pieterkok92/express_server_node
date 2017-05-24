@@ -64,7 +64,7 @@ app.get('/upload', function(req, res){
 app.get('/upload2', function(req, res){
   let powerlines = require('./powerlines.json');
 
-  let powerlinesArray = powerlines[''];
+  //let powerlinesArray = powerlines[''];
 
   //mongoose.connect(url);
   var db = mongoose.connection;
@@ -73,7 +73,7 @@ app.get('/upload2', function(req, res){
         if(err){
             return res.json( {success: false, message: err });
         }    
-      powerlinesArray.forEach((powerline)=>{      
+      powerlines.forEach((powerline)=>{      
         var object = {"Geometry":powerline.json_geometry.coordinates};
         db.collection('powerlines').insert(object);
       
