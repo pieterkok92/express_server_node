@@ -15,7 +15,7 @@ var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
 
 let stations = require('./routes/stations');
 let getNearest = require('./routes/getNearest');
-
+let getNearest_powerlines = require('./routes/getNearest_powerlines');
 
 
 
@@ -35,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/stations', stations);
 app.use('/getNearest', getNearest)
+app.use('/getNearest_powerlines', getNearest_powerlines)
 
 app.get('/download', function(req, res){
   var file = __dirname + '/upload-folder/substations.geojson';
