@@ -42,6 +42,7 @@ app.get('/download', function(req, res){
 });
 
 app.get('/upload', function(req, res){
+
   let substations = require('./substations.json');
 
   let substationsArray = substations['features'];
@@ -62,8 +63,8 @@ app.get('/upload', function(req, res){
 });
 
 app.get('/upload2', function(req, res){
-  let powerlines = require('./powerlines.json');
 
+  let powerlines = require('./powerlines.json');
 
   let powerlinesArray = powerlines['features'];
 
@@ -75,7 +76,7 @@ app.get('/upload2', function(req, res){
             return res.json( {success: false, message: err });
         }    
       powerlinesArray.forEach((powerline)=>{      
-        var object = {"Geometry":powerline.coordinates};
+        var object = {"Geometry":powerline.json_geometry.coordinates};
         db.collection('powerlines').insert(object);
       
       });
