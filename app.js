@@ -1,3 +1,4 @@
+var rise = require('@risingstack/trace');// your application's code
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -10,6 +11,7 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var app = express();
+
 // Connection URL
 var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
 
@@ -90,7 +92,7 @@ app.get('/test',function(req,res){
   console.log(json_content[0])
   for(var single in json_content.features) {
       //console.log(json_content[single].type);
-      console.log(single[0]);
+      //console.log(single);
   }
   
 });
