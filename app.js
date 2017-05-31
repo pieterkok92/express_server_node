@@ -92,7 +92,8 @@ app.get('/test',function(req,res){
   var arr = json_content.features;
   for (i = 0; i < arr.length; i++) 
   {   
-    console.log(json_content.features[i].properties.name);
+    //console.log(json_content.features[i].properties.name);
+    console.log(json_content.features[i].geometry.coordinates);
   }
   
 
