@@ -91,7 +91,7 @@ app.get('/test',function(req,res){
   var json_content = JSON.parse(content);
   //console.log(json_content[0]);
   //console.log(json_content[0])
-  console.log(json_content.features[0].properties);
+  console.log(json_content.features[0].properties.name);
   //for(var single in json_content.features) {
   //    console.log(single['properties'][1].name)
   //}
