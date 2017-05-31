@@ -90,14 +90,22 @@ app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
   var json_content = JSON.parse(content);
   var arr = json_content.features;
-  for (i = 0; i < arr.length; i++) 
-  {   
-    //console.log(json_content.features[i].properties.name);
-    console.log(json_content.features[i].geometry.coordinates);
-  }
-  
+  db.on('error', console.error.bind(console, 'connection error:'));  
+  MongoClient.connect(url, function(err, db) {
+        if(err){
+            return res.json( {success: false, message: err });
+        }    
+    for (i = 0; i < arr.length; i++) 
+    {   
+      //console.log(json_content.features[i].properties.name);
+      //console.log(json_content.features[i].geometry.coordinates);
+      var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates}
+      db.collection('powerlines').insert(lineobj);
+    }
+    });
+ });  
 
-});
+
 
 
 // catch 404 and forward to error handler
