@@ -92,8 +92,7 @@ app.get('/test',function(req,res){
   console.log(json_content[0]);
   //console.log(json_content[0])
   for(var single in json_content.features) {
-      //console.log(json_content[single].type);
-      //console.log(single);
+      console.log(single['properties'][1].name)
   }
   
 });
