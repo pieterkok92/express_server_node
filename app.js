@@ -92,7 +92,7 @@ app.get('/test',function(req,res){
   forEach(line in json_content.features)
   {
       //console.log(json_content.features[line].properties.name);.
-      console.log(json_content[line].properties.name);
+      console.log(json_content.features[line].properties.name);
   }
 
 });
