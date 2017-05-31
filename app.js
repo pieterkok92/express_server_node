@@ -91,7 +91,7 @@ app.get('/test',function(req,res){
   var json_content = JSON.parse(content);
   var arr = json_content.features;
   console.log(arr);
-  console.log(arr.lenght);
+  console.log(arr.length);
   //for(var line in json_content)
   //{
       //console.log(json_content.features[line].properties.name);.
