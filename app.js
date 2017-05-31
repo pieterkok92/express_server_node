@@ -89,7 +89,7 @@ app.get('/upload2', function(req, res){
 app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
   var json_content = JSON.parse(content);
-  for(var line in json_content.features)
+  for(var line in json_content)
   {
       //console.log(json_content.features[line].properties.name);.
       console.log(line);
