@@ -89,7 +89,7 @@ app.get('/test',function(req,res){
   var json_content = JSON.parse(content);
   for(var single in json_content.features) {
       //console.log(json_content[single].type);
-      console.log(single);
+      console.log(single.properties.name);
   }
   
 });
