@@ -90,13 +90,11 @@ app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
   var json_content = JSON.parse(content);
   var arr = json_content.features;
-
-  console.log(arr.length);
-  //for(var line in json_content)
-  //{
-      //console.log(json_content.features[line].properties.name);.
-   //   console.log(line);
-  //}
+  for (i = 0; i < arr.length; i++) 
+  {   
+    console.log(json_content.features[i].properties.name);
+  }
+  
 
 });
 
