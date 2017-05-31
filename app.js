@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
-
+var fs = require("fs");
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
@@ -82,6 +82,13 @@ app.get('/upload2', function(req, res){
       
       });
   });
+});
+
+app.get('/test',function(req,res){
+  var content = fs.readFileSync("./P.json");
+  var json_content = JSON.parse(content);
+  console.log(content);
+  
 });
 
 
