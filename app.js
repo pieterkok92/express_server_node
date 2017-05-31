@@ -90,14 +90,14 @@ app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
   var json_content = JSON.parse(content);
   var arr = json_content.features;
-  
+
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));  
   MongoClient.connect(url, function(err, db) {
         if(err){
             return res.json( {success: false, message: err });
         }    
-    for (i = 0; i < arr.length; i++) 
+    for (i = 0; i < arr.length -1; i++) 
     {   
       //console.log(json_content.features[i].properties.name);
       //console.log(json_content.features[i].geometry.coordinates);
