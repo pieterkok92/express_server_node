@@ -1,4 +1,4 @@
-var rise = require('@risingstack/trace');// your application's code
+require('@risingstack/trace');// your application's code
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -89,7 +89,7 @@ app.get('/upload2', function(req, res){
 app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
   var json_content = JSON.parse(content);
-  console.log(json_content[0])
+  //console.log(json_content[0])
   for(var single in json_content.features) {
       //console.log(json_content[single].type);
       //console.log(single);
