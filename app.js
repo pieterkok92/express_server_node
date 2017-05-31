@@ -99,7 +99,7 @@ app.get('/test',function(req,res){
     {   
       //console.log(json_content.features[i].properties.name);
       //console.log(json_content.features[i].geometry.coordinates);
-      var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates}
+      var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
       db.collection('powerlines').insert(lineobj);
     }
     console.log("Finished");
