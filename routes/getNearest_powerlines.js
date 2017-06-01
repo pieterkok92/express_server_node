@@ -20,17 +20,25 @@ router.get('/', function(req, res, next) {
         if(err){
             return res.json( {success: false, message: err });
         }
-        
-        db.collection('powerlines').find({}).limit(10000).toArray((err, stations)=>{
-            if(err){
-                return res.json( {success: false, message: err });
-            }
+        collection.find().toArray(function(err, items) {});
+        var collection = db.collection('powerlines');
+        var stream = collection.find({}).stream();
+        stream.on("data", function(item) {});
+        stream.on("end", function() {});
+        // db.collection('powerlines').find({}).limit(10000).toArray((err, stations)=>{
+        //     if(err){
+        //         return res.json( {success: false, message: err });
+        //     }
 
-            return res.json({success: true, stations: stations});
-        });
+        //     return res.json({success: true, stations: stations});
+        // });
 
     });
   
   
 });
 module.exports = router;
+
+
+ 
+    
