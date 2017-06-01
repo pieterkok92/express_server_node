@@ -40,9 +40,10 @@ app.use('/getNearest', getNearest)
 app.use('/getNearest_powerlines', getNearest_powerlines)
 
 app.get('/download', function(req, res){
-  var file = __dirname + '/upload-folder/substations.geojson';
+  var file = __dirname + '/P.json';
   res.download(file); // Set disposition and send it.
 });
+
 
 app.get('/upload', function(req, res){
 
