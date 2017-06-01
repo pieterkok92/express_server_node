@@ -20,9 +20,9 @@ router.get('/', function(req, res, next) {
         if(err){
             return res.json( {success: false, message: err });
         }
-        collection.find().toArray(function(err, items) {});
-        var collection = db.collection('powerlines');
-        var stream = collection.find({}).stream();
+        //db.collection('powerlines').find().toArray(function(err, items) {});
+        //var collection = db.collection('powerlines');
+        var stream = db.collection('powerlines').find({}).stream();
         stream.on("data", function(item) {});
         stream.on("end", function() {});
         // db.collection('powerlines').find({}).limit(10000).toArray((err, stations)=>{
