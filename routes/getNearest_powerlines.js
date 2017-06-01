@@ -25,7 +25,6 @@ router.get('/', function(req, res, next) {
         var collection = db.collection('powerlines');
         var stream = collection.find({})
             .stream()
-            .pipe(JSONStream.stringify())
             .pipe(res)
         // db.collection('powerlines').find({}).limit(10000).toArray((err, stations)=>{
         //     if(err){
