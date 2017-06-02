@@ -67,26 +67,27 @@ app.get('/upload', function(req, res){
   });
 });
 
-app.get('/upload2', function(req, res){
-  var content = fs.readFileSync("./P.json");
-  var json_content = JSON.parse(content);
-  var arr = json_content.features;
+// app.get('/upload2', function(req, res){
+//   var content = fs.readFileSync("./P.json");
+//   var json_content = JSON.parse(content);
+//   var arr = json_content.features;
 
-  conn.once('open', function () {
-    console.log('open');
-    var gfs = Grid(conn.db);
+//   conn.once('open', function () {
+//     console.log('open');
+//     var gfs = Grid(conn.db);
     
-    for (i = 0; i < arr.length -1; i++) 
-    {  
-        var writestream = gfs.createWriteStream({
-        filename: 'mongo_file.txt'
-    });
-    //fs.createReadStream().pipe(writestream);
+//     for (i = 0; i < arr.length -1; i++) 
+//     {  
+//         var writestream = gfs.createWriteStream({
+//         filename: 'mongo_file.txt'
+//     });
+//     //fs.createReadStream().pipe(writestream);
  
     
-  });
+//   });
+  
  
-});
+// });
 
 app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
