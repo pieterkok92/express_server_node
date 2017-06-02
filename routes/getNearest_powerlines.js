@@ -20,11 +20,13 @@ router.get('/', function(req, res, next) {
         if(err){
             return res.json( {success: false, message: err });
         }
-         db.collection('powerlines').find().toArray(function(err, items) {
-                 console.log(items);
-                 res.send(items);
-             });
+          db.collection('powerlines').find({}).limit(9500).toArray((err, stations)=>{
+            if(err){
+                return res.json( {success: false, message: err });
+            }
 
+            return res.json({success: true, stations: stations});            
+        });     
       
     });
   
