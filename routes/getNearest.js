@@ -19,16 +19,16 @@ router.get('/', function(req, res, next) {
     MongoClient.connect(url, function(err, db) {
         if(err){
             return res.json( {success: false, message: err });
-        }
-        
-        db.collection('stations').find({}).toArray((err, stations)=>{
+        } 
+
+          db.collection('stations').find({}).toArray((err, stations)=>{
             if(err){
                 return res.json( {success: false, message: err });
             }
 
-            return res.json({success: true, stations: stations});
-        });
-
+            return res.json({success: true, stations: stations});            
+        });     
+       
     });
   
   
