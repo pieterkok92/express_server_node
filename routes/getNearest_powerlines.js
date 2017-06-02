@@ -26,7 +26,8 @@ router.get('/', function(req, res, next) {
                 return res.json( {success: false, message: err });
             }
 
-            return res.json({success: true, stations: stations});
+            //return res.json({success: true, stations: stations});
+            return res
         });
 
     });

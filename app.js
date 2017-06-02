@@ -12,6 +12,7 @@ var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var app = express();
 
+
 // Connection URL
 var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
 
@@ -67,24 +68,24 @@ app.get('/upload', function(req, res){
 });
 
 app.get('/upload2', function(req, res){
+  var content = fs.readFileSync("./P.json");
+  var json_content = JSON.parse(content);
+  var arr = json_content.features;
 
-  let powerlines = require('./P.json');
-
-  let powerlinesArray = powerlines['features'];
-
-  //mongoose.connect(url);
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'connection error:'));  
-  MongoClient.connect(url, function(err, db) {
-        if(err){
-            return res.json( {success: false, message: err });
-        }    
-      powerlinesArray.forEach((powerline)=>{      
-        var object = {"Type":powerline.properties.name,"Geometry":powerline.geometry.coordinates};
-        db.collection('powerlines').insert(object);
-      
-      });
+  conn.once('open', function () {
+    console.log('open');
+    var gfs = Grid(conn.db);
+    
+    for (i = 0; i < arr.length -1; i++) 
+    {  
+        var writestream = gfs.createWriteStream({
+        filename: 'mongo_file.txt'
+    });
+    //fs.createReadStream().pipe(writestream);
+ 
+    
   });
+ 
 });
 
 app.get('/test',function(req,res){
