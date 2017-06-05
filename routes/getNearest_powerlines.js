@@ -29,19 +29,24 @@ router.get('/', function(req, res, next) {
         //     return res.json({success: true, stations: stations});            
         // });  
         var path;
-        db.collection('powerlines', function(err, collection) {
-        collection.find({}).toArray(function(err, results) {
-        path = results;
-        //console.log(results);
+        db.collection('powerlines', function(err, collection) 
+        {
+            collection.find({}).toArray(function(err, results) 
+            {
+                path = results;
+                //console.log(results);
+            });
         });
-        var stream = fs.createWriteStream("my_file.txt");
-        stream.once('open', function(fd) {
-        stream.write(path);
-        stream.end();
-        });
+        fs.writeFile("/test.txt", path, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log("The file was saved!");
+}); 
      
       
-    });
+    
 
 
   
