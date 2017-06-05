@@ -27,20 +27,35 @@ router.get('/', function(req, res) {
         //     }
 
         //     return res.json({success: true, stations: stations});            
-        // });  
-        var path;
+        // }); 
+
+         var path;
         db.collection('powerlines', function(err, collection) 
         {
             collection.find({}).toArray(function(err, results) 
             {
                 path = results;
                 //console.log(path);
-                res.download(path);
+                //res.download(path);
                 
             });
         });
+
+        fs.writeFile('test.txt', path,  function(err) {
+        if (err) {
+            return console.error(err);
+        }
         
-  
+        console.log("Data written successfully!");
+        console.log("Let's read newly written data");
+        fs.readFile('input.txt', function (err, data) {
+            if (err) {
+                return console.error(err);
+            }
+            console.log("Asynchronous read: " + data.toString());
+        });
+        });
+
     });
 });
 module.exports = router;
