@@ -35,12 +35,12 @@ router.get('/', function(req, res) {
             });
         });
 
-		node_dropbox.Authenticate('os6d36r922c1xbv', 'w5t5w06m409xrl5', 'https://nampowermobilegis.herokuapp.com/getNearest_powerlines', function(err, url){
+		node_dropbox.Authenticate('os6d36r922c1xbv', 'w5t5w06m409xrl5', function(err, url){
 			// redirect user to the url.
 			// looks like this: "https://www.dropbox.com/1/oauth2/authorize?client_id=<key_here>&response_type=code&redirect_uri=<redirect_url_here>"
             //https://www.dropbox.com/1/oauth2/authorize?client_id=<os6d36r922c1xbv>&response_type=code&redirect_uri=<https://nampowermobilegis.herokuapp.com/getNearest_powerlines>
 		});
-		node_dropbox.AccessToken('os6d36r922c1xbv', 'w5t5w06m409xrl5', 'ZC38k3IQhxAAAAAAAAAA0Ep21gRB6FuKMAbbmj5Y3IKRJXZIubsMTD_c5-J87wdL', 'https://nampowermobilegis.herokuapp.com/getNearest_powerlines', function(err, body) {
+		node_dropbox.AccessToken('os6d36r922c1xbv', 'w5t5w06m409xrl5', function(err, body) {
 			access_token = body.access_token;
 		});
 
