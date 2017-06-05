@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
         if(err){
             return res.json( {success: false, message: err });
         }
-          db.collection('powerlines').find({}).toArray((err, stations)=>{
+          db.collection('powerlines').find({}).limit(5000).toArray((err, stations)=>{
             if(err){
                 return res.json( {success: false, message: err });
             }
