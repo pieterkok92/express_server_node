@@ -26,18 +26,19 @@ router.get('/', function(req, res, next) {
             }
 
             return res.json({success: true, stations: stations});            
-        });     
-      
-    });
-
-    var path;
-db.collection('powerlines', function(err, collection) {
-    collection.find({}).toArray(function(err, results) {
+        });  
+        var path;
+        db.collection('powerlines', function(err, collection) {
+        collection.find({}).toArray(function(err, results) {
         path = results;
         console.log(results);
     });
 });
-  
+     
+      
+    });
+
+
   
 });
 module.exports = router;
