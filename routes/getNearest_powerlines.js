@@ -34,10 +34,11 @@ router.get('/', function(req, res, next) {
             collection.find({}).toArray(function(err, results) 
             {
                 path = results;
-                //console.log(results);
+                console.log(path);
+                return results;
             });
         });
-        return path;
+        
   
     });
 });
