@@ -4,6 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var router = express.Router();
 var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
 var geolib = require('geolib');
+var fs = require('fs');
 mongoose.connect(url);
 
 
@@ -20,20 +21,24 @@ router.get('/', function(req, res, next) {
         if(err){
             return res.json( {success: false, message: err });
         }
-          db.collection('powerlines').find({}).limit(5000).toArray((err, stations)=>{
-            if(err){
-                return res.json( {success: false, message: err });
-            }
+        //   db.collection('powerlines').find({}).limit(5000).toArray((err, stations)=>{
+        //     if(err){
+        //         return res.json( {success: false, message: err });
+        //     }
 
-            return res.json({success: true, stations: stations});            
-        });  
+        //     return res.json({success: true, stations: stations});            
+        // });  
         var path;
         db.collection('powerlines', function(err, collection) {
         collection.find({}).toArray(function(err, results) {
         path = results;
-        console.log(results);
-    });
-});
+        //console.log(results);
+        });
+        var stream = fs.createWriteStream("my_file.txt");
+        stream.once('open', function(fd) {
+        stream.write(path);
+        stream.end();
+        });
      
       
     });
