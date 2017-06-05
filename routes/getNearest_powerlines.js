@@ -34,8 +34,8 @@ router.get('/', function(req, res, next) {
             collection.find({}).toArray(function(err, results) 
             {
                 path = results;
-                console.log(path);
-                return results;
+                //console.log(path);
+                res.path;
             });
         });
         
