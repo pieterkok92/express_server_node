@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
                 //console.log(results);
             });
         });
-        fs.writeFile("./test.txt", path, function(err) {
+        fs.writeFile("./test2.txt", path, function(err) {
         if(err) {
             return console.log(err);
         }
