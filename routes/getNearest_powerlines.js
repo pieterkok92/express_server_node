@@ -37,20 +37,9 @@ router.get('/', function(req, res, next) {
                 //console.log(results);
             });
         });
-        fs.writeFile("./test2.txt", path, function(err) {
-        if(err) {
-            return console.log(err);
-        }
-
-        console.log("The file was saved!");
-}); 
-     
-      
-    
-
-
+        return path;
   
-});
+    });
 });
 module.exports = router;
 
