@@ -1,4 +1,4 @@
-var Dropbox = require('../../src/dropbox');
+var Dropbox = require('node-drobox');
 var fs = require('fs');
 var path = require('path');
 var prompt = require('prompt');
