@@ -35,7 +35,8 @@ router.get('/', function(req, res) {
             {
                 path = results;
                 //console.log(path);
-                res.send(path);
+                res.download(path);
+                
             });
         });
         
