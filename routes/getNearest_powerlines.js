@@ -15,7 +15,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 //geolib.getDistance(object start, object end)
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   // Use connect method to connect to the server
     MongoClient.connect(url, function(err, db) {
         if(err){
@@ -35,7 +35,7 @@ router.get('/', function(req, res, next) {
             {
                 path = results;
                 //console.log(path);
-                res.path;
+                res.send(path);
             });
         });
         
