@@ -1,4 +1,4 @@
-var Dropbox = require('node-drobox');
+var Dropbox = require('../../src/dropbox');
 var fs = require('fs');
 var path = require('path');
 var prompt = require('prompt');
@@ -6,7 +6,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://admin:1234@ds129720.mlab.com:29720/heroku_n1kxz9pj';
-var fs = require('fs');
 var router = express.Router();
 mongoose.connect(url);
 
