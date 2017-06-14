@@ -7,10 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var fs = require("fs");
+var streamingS3 = require('streaming-s3');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 var app = express();
+
 
 
 // Connection URL
@@ -67,9 +69,7 @@ app.get('/upload', function(req, res){
   });
 });
 
-app.get('/upload-AWS', function(req, res){
-  var streamingS3 = require('streaming-s3'),
-      
+app.get('/upload-AWS', function(req, res){   
   
   var fStream = fs.CreateReadStream('/P.json');
   var uploader = new streamingS3(fStream, {accessKeyId: 'AKIAJVMOBRHEE2GOJQMA', secretAccessKey: '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'},
