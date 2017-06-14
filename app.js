@@ -67,6 +67,24 @@ app.get('/upload', function(req, res){
   });
 });
 
+app.get('/upload-AWS', function(req, res){
+  var streamingS3 = require('streaming-s3'),
+      
+  
+  var fStream = fs.CreateReadStream('/P.json');
+  var uploader = new streamingS3(fStream, {accessKeyId: 'AKIAJVMOBRHEE2GOJQMA', secretAccessKey: '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'},
+    {
+      Bucket: 'nampower-mobile-gis',
+      Key: 'P.json',
+      ContentType: 'text/json'
+    },  function (err, resp, stats) {
+    if (err) return console.log('Upload error: ', e);
+    console.log('Upload stats: ', stats);
+    console.log('Upload successful: ', resp);
+    }
+  );
+});
+
 // app.get('/upload2', function(req, res){
 //   var content = fs.readFileSync("./P.json");
 //   var json_content = JSON.parse(content);
