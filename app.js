@@ -71,7 +71,7 @@ app.get('/upload', function(req, res){
 
 app.get('/upload-AWS', function(req, res){   
   
-  var fStream = fs.CreateReadStream('/P.json');
+  var fStream = fs.CreateReadStream('./P.json');
   var uploader = new streamingS3(fStream, {accessKeyId: 'AKIAJVMOBRHEE2GOJQMA', secretAccessKey: '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'},
     {
       Bucket: 'nampower-mobile-gis',
