@@ -71,11 +71,11 @@ app.get('/upload', function(req, res){
 
 app.get('/upload-AWS', function(req, res){    
   var fStream = fs.CreateReadStream('./P.json');
-  var uploader = new streamingS3(fStream, {accessKeyId: 'AKIAJVMOBRHEE2GOJQMA', secretAccessKey: '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'},
+  var uploader = new streamingS3(fStream, {accessKeyId: 'AKIAIY5SHWOFHZ4SIOKA', secretAccessKey: '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'},
       {
-        Bucket: 'nampower-mobile-gis.com',
+        Bucket: 'nampower-mobile-gis',
         Key: 'P.json',
-        ContentType: 'text/html'
+        ContentType: 'application/json'
       }, function (err, resp, stats) {
     if (err) return console.log('Upload error: ', e);
     console.log('Upload stats: ', stats);
