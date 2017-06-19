@@ -130,106 +130,114 @@ app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
   var json_content = JSON.parse(content);
   var arr = json_content.features;
-  
+  var smalljson = {};
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));  
   MongoClient.connect(url, function(err, db) {
         if(err){
             return res.json( {success: false, message: err });
         }    
-    var smalljson = [];   
+      
     for (i = 0; i < arr.length -1; i++) 
     {   
       //console.log(json_content.features[i].properties.name);
       //console.log(json_content.features[i].geometry.coordinates);
-      var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
+      //var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
       //db.collection('powerlines').insert(lineobj);
-      smalljson = JSON.stringify(lineobj);
+      smalljson[i] = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
     }
-    var count = Object.keys(smalljson).length;
+    var mydata = JSON.parse(smalljson);
+
+    var count = Object.keys(mydata).length;
     console.log(count);
     console.log()
     console.log("Finished");
-    });
+  });
+
+  
+//   async.waterfall([
+//   //-----------------------------
+//   // Obtain a new access token
+//   //-----------------------------
+//   function(callback) {
+//     var tokenProvider = new GoogleTokenProvider({
+//       'refresh_token': REFRESH_TOKEN,
+//       'client_id': CLIENT_ID,
+//       'client_secret': CLIENT_SECRET
+//     });
+//     tokenProvider.getToken(callback);
+//   },
+
+//   function(accessToken, callback) {
+    
+//     var fstatus = fs.statSync();
+//     fs.open(PNG_FILE, 'r', function(status, fileDescripter) {
+//       if (status) {
+//         callback(status.message);
+//         return;
+//       }
+      
+//       var buffer = new Buffer(fstatus.size);
+//       fs.read(fileDescripter, buffer, 0, fstatus.size, 0, function(err, num) {
+          
+//         request.post({
+//           'url': 'https://www.googleapis.com/upload/drive/v2/files',
+//           'qs': {
+//              //request module adds "boundary" and "Content-Length" automatically.
+//             'uploadType': 'multipart'
+
+//           },
+//           'headers' : {
+//             'Authorization': 'Bearer ' + accessToken
+//           },
+//           'multipart':  [
+//             {
+//               'Content-Type': 'application/json; charset=UTF-8',
+//               'body': JSON.stringify({
+//                  'title': PNG_FILE,
+//                  'parents': [
+//                    {
+//                      'id': PARENT_FOLDER_ID
+//                    }
+//                  ]
+//                })
+//             },
+//             {
+//               'Content-Type': 'application/json',
+//               'body': buffer
+//             }
+//           ]
+//         }, callback);
+        
+//       });
+//     });
+//   },
+
+//   //----------------------------
+//   // Parse the response
+//   //----------------------------
+//   function(response, body, callback) {
+//     var body = JSON.parse(body);
+//     callback(null, body);
+//   },
+
+// ], function(err, results) {
+//   if (!err) {
+//     console.log(results);
+//   } else {
+//     console.error('---error');
+//     console.error(err);
+//   }
+// });
+
+
+
+
+
  }); 
 
 
-app.get('/upload-gdrive',function(req,res){
-  async.waterfall([
-  //-----------------------------
-  // Obtain a new access token
-  //-----------------------------
-  function(callback) {
-    var tokenProvider = new GoogleTokenProvider({
-      'refresh_token': REFRESH_TOKEN,
-      'client_id': CLIENT_ID,
-      'client_secret': CLIENT_SECRET
-    });
-    tokenProvider.getToken(callback);
-  },
 
-  function(accessToken, callback) {
-    
-    var fstatus = fs.statSync(PNG_FILE);
-    fs.open(PNG_FILE, 'r', function(status, fileDescripter) {
-      if (status) {
-        callback(status.message);
-        return;
-      }
-      
-      var buffer = new Buffer(fstatus.size);
-      fs.read(fileDescripter, buffer, 0, fstatus.size, 0, function(err, num) {
-          
-        request.post({
-          'url': 'https://www.googleapis.com/upload/drive/v2/files',
-          'qs': {
-             //request module adds "boundary" and "Content-Length" automatically.
-            'uploadType': 'multipart'
-
-          },
-          'headers' : {
-            'Authorization': 'Bearer ' + accessToken
-          },
-          'multipart':  [
-            {
-              'Content-Type': 'application/json; charset=UTF-8',
-              'body': JSON.stringify({
-                 'title': PNG_FILE,
-                 'parents': [
-                   {
-                     'id': PARENT_FOLDER_ID
-                   }
-                 ]
-               })
-            },
-            {
-              'Content-Type': 'application/json',
-              'body': buffer
-            }
-          ]
-        }, callback);
-        
-      });
-    });
-  },
-
-  //----------------------------
-  // Parse the response
-  //----------------------------
-  function(response, body, callback) {
-    var body = JSON.parse(body);
-    callback(null, body);
-  },
-
-], function(err, results) {
-  if (!err) {
-    console.log(results);
-  } else {
-    console.error('---error');
-    console.error(err);
-  }
-});
-});
 
 
 
