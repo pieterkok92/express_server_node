@@ -152,7 +152,7 @@ app.get('/test',function(req,res){
     console.log()
     console.log("next is the parsed json////////////");
     var mydata = JSON.parse(smalljson);
-    console.log(mydata);
+    //console.log(mydata);
     console.log("next is the count////////////"); 
     console.log()   
     var count = Object.keys(mydata).length;
