@@ -138,17 +138,17 @@ app.get('/test',function(req,res){
             return res.json( {success: false, message: err });
         }    
       
-    for (i = 0; i < arr.length -1; i++) 
+    for (i = 0; i < 12 -1; i++) 
     {   
       //console.log(json_content.features[i].properties.name);
       //console.log(json_content.features[i].geometry.coordinates);
       //var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
       //db.collection('powerlines').insert(lineobj);
-      smalljson[i] = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
-      console.log(smalljson[i]);
+      smalljson.push({"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates});      
     }
+    console.log(smalljson);
     var mydata = JSON.parse(smalljson);
-
+    console.log(mydata);
     var count = Object.keys(mydata).length;
     console.log(count);
     console.log()
