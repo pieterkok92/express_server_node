@@ -130,7 +130,7 @@ app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
   var json_content = JSON.parse(content);
   var arr = json_content.features;
-  var smalljson = {};
+  var smalljson = [];
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));  
   MongoClient.connect(url, function(err, db) {
