@@ -142,7 +142,7 @@ app.get('/test',function(req,res){
       //console.log(json_content.features[i].properties.name);
       //console.log(json_content.features[i].geometry.coordinates);
       var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
-      db.collection('powerlines').insert(lineobj);
+      //db.collection('powerlines').insert(lineobj);
       smalljson = JSON.stringify(lineobj);
     }
     var count = Object.keys(smalljson).length;
