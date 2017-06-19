@@ -145,6 +145,7 @@ app.get('/test',function(req,res){
       //var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
       //db.collection('powerlines').insert(lineobj);
       smalljson[i] = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
+      console.log(smalljson[i]);
     }
     var mydata = JSON.parse(smalljson);
 
