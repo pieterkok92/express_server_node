@@ -63,7 +63,7 @@ async.waterfall([
                })
             },
             {
-              'Content-Type': 'image/png',
+              'Content-Type': 'application/json',
               'body': buffer
             }
           ]
