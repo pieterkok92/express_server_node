@@ -146,11 +146,19 @@ app.get('/test',function(req,res){
       //db.collection('powerlines').insert(lineobj);
       smalljson.push({"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates});      
     }
+    console.log("only the array/////////////");
+    console.log()
     console.log(smalljson);
+    console.log()
+    console.log("next is the parsed json////////////");
     var mydata = JSON.parse(smalljson);
     console.log(mydata);
+    console.log("next is the count////////////"); 
+    console.log()   
     var count = Object.keys(mydata).length;
     console.log(count);
+    console.log()
+    console.log("next is the parsed json////////////")
     console.log()
     console.log("Finished");
   });
