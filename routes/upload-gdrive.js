@@ -6,7 +6,7 @@ const REFRESH_TOKEN = '1/3kJ89ZhWCF9uSt5CINBCO-YmD0dJwIvZ1-GfpmjN6IB-SzBHw6aJUZA
 const ENDPOINT_OF_GDRIVE = 'https://www.googleapis.com/drive/v2';
 const PARENT_FOLDER_ID = '0B279ViC0wcvObjdQWlREek5iVmc';
 
-const PNG_FILE = './P.json';
+const PNG_FILE = 'P.json';
 
 var async = require('async'),
     request = require('request'),
