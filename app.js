@@ -130,7 +130,7 @@ app.get('/test',function(req,res){
   var content = fs.readFileSync("./P.json");
   var json_content = JSON.parse(content);
   var arr = json_content.features;
-
+  var smalljson = [];
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));  
   MongoClient.connect(url, function(err, db) {
@@ -143,7 +143,10 @@ app.get('/test',function(req,res){
       //console.log(json_content.features[i].geometry.coordinates);
       var lineobj = {"Type":json_content.features[i].properties.name,"Geometry":json_content.features[i].geometry.coordinates};
       db.collection('powerlines').insert(lineobj);
+      smalljson = JSON.stringify(lineobj);
     }
+    var count = Object.keys(smalljson).length;
+    console.log(count);
     console.log("Finished");
     });
  }); 
